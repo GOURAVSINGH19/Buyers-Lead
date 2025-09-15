@@ -2,7 +2,6 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { BuyerForm } from '../components/buyer-form'
-import axios from 'axios'
 
 export default async function NewBuyerPage() {
   const session = await getServerSession(authOptions)

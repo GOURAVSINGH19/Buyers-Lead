@@ -12,6 +12,7 @@ export default async function BuyerPage({ params }: BuyerPageProps) {
     const buyer = response.data
     return <BuyerDetail buyer={buyer} />
   } catch (error) {
+    console.log("error not found",error)
     notFound()
   }
 }

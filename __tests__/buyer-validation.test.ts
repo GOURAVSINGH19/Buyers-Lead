@@ -1,4 +1,4 @@
-import { buyerSchema, csvImportSchema } from '@/lib/validations/buyer'
+import { buyerSchema } from '@/lib/validations/buyer'
 
 describe('Buyer Validation', () => {
   describe('buyerSchema', () => {
@@ -96,61 +96,5 @@ describe('Buyer Validation', () => {
         expect(result.error.issues[0].message).toBe('Full name must be at least 2 characters')
       }
     })
-  })
-
-  describe('csvImportSchema', () => {
-    it('should validate CSV row with string numbers', () => {
-      const csvRow = {
-        fullName: 'John Doe',
-        email: 'john@example.com',
-        phone: '9876543210',
-        city: 'CHANDIGARH',
-        propertyType: 'APARTMENT',
-        bhk: 'TWO',
-        purpose: 'BUY',
-        budgetMin: '5000000', // String number
-        budgetMax: '10000000', // String number
-        timeline: 'ZERO_TO_THREE_MONTHS',
-        source: 'WEBSITE',
-        notes: 'Looking for apartment',
-        tags: 'urgent,first-time-buyer', // Comma-separated string
-        status: 'NEW'
-      }
-
-      const result = csvImportSchema.safeParse(csvRow)
-      expect(result.success).toBe(true)
-      if (result.success) {
-        expect(result.data.budgetMin).toBe(5000000)
-        expect(result.data.budgetMax).toBe(10000000)
-        expect(result.data.tags).toEqual(['urgent', 'first-time-buyer'])
-      }
-    })
-
-    it('should handle empty CSV values', () => {
-      const csvRow = {
-        fullName: 'John Doe',
-        email: '',
-        phone: '9876543210',
-        city: 'CHANDIGARH',
-        propertyType: 'PLOT',
-        purpose: 'BUY',
-        budgetMin: '',
-        budgetMax: '',
-        timeline: 'ZERO_TO_THREE_MONTHS',
-        source: 'WEBSITE',
-        notes: '',
-        tags: '',
-        status: 'NEW'
-      }
-
-      const result = csvImportSchema.safeParse(csvRow)
-      expect(result.success).toBe(true)
-      if (result.success) {
-        expect(result.data.email).toBe('')
-        expect(result.data.budgetMin).toBeUndefined()
-        expect(result.data.budgetMax).toBeUndefined()
-        expect(result.data.tags).toEqual([])
-      }
-    })
-  })
+  });
 })

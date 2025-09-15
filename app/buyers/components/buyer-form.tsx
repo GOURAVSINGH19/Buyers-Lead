@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import { BHK, City, PropertyType, Purpose, Source, Timeline } from '@prisma/client'
 
 
 interface BuyerFormProps {
@@ -112,7 +113,7 @@ export function BuyerForm({ initialData }: BuyerFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="city">City *</Label>
-              <Select onValueChange={(value) => setValue('city', value as any, { shouldValidate: true })}>
+              <Select onValueChange={(value) => setValue('city', value as City, { shouldValidate: true })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select city" />
                 </SelectTrigger>
@@ -129,7 +130,7 @@ export function BuyerForm({ initialData }: BuyerFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="propertyType">Property Type *</Label>
-              <Select onValueChange={(value) => setValue('propertyType', value as any, { shouldValidate: true })}>
+              <Select onValueChange={(value) => setValue('propertyType', value as PropertyType, { shouldValidate: true })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select property type" />
                 </SelectTrigger>
@@ -147,7 +148,7 @@ export function BuyerForm({ initialData }: BuyerFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="bhk">BHK *</Label>
-              <Select onValueChange={(value) => setValue('bhk', value as any, { shouldValidate: true })}>
+              <Select onValueChange={(value) => setValue('bhk', value as BHK, { shouldValidate: true })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select BHK" />
                 </SelectTrigger>
@@ -164,7 +165,7 @@ export function BuyerForm({ initialData }: BuyerFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="purpose">Purpose *</Label>
-              <Select onValueChange={(value) => setValue('purpose', value as any, { shouldValidate: true })}>
+              <Select onValueChange={(value) => setValue('purpose', value as Purpose, { shouldValidate: true })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select purpose" />
                 </SelectTrigger>
@@ -207,7 +208,7 @@ export function BuyerForm({ initialData }: BuyerFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="timeline">Timeline *</Label>
-              <Select onValueChange={(value) => setValue('timeline', value as any)}>
+              <Select onValueChange={(value) => setValue('timeline', value as Timeline, { shouldValidate: true })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select timeline" />
                 </SelectTrigger>
@@ -224,7 +225,7 @@ export function BuyerForm({ initialData }: BuyerFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="source">Source *</Label>
-              <Select onValueChange={(value) => setValue('source', value as any, { shouldValidate: true })}>
+              <Select onValueChange={(value) => setValue('source', value as Source, { shouldValidate: true })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select source" />
                 </SelectTrigger>

@@ -15,11 +15,10 @@ export function BuyersFilters() {
   const [propertyType, setPropertyType] = useState('all')
   const [status, setStatus] = useState('all')
   const [timeline, setTimeline] = useState('all')
-  const [buyers, setBuyers] = useState([])
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/buyers", {
+      await axios.get("/api/buyers", {
         params: {
           search: search || undefined,
           city: city !== 'all' ? city : undefined,
@@ -28,7 +27,6 @@ export function BuyersFilters() {
           timeline: timeline !== 'all' ? timeline : undefined,
         },
       })
-      setBuyers(response.data.buyers)
     } catch (error) {
       console.error("Error fetching buyers:", error)
     }

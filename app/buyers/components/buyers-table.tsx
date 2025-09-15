@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { MoreHorizontal, Eye, Delete } from 'lucide-react'
+import { MoreHorizontal, Eye } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
