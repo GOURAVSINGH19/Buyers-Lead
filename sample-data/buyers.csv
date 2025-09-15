@@ -1,0 +1,11 @@
+fullName,email,phone,city,propertyType,bhk,purpose,budgetMin,budgetMax,timeline,source,notes,tags,status
+John Doe,john.doe@example.com,9876543210,CHANDIGARH,APARTMENT,TWO,BUY,5000000,8000000,ZERO_TO_THREE_MONTHS,WEBSITE,"Looking for a 2BHK apartment in Chandigarh","urgent,first-time-buyer",NEW
+Jane Smith,jane.smith@example.com,9876543211,MOHALI,VILLA,THREE,BUY,10000000,15000000,THREE_TO_SIX_MONTHS,REFERRAL,"Interested in villa with garden","premium,family",QUALIFIED
+Mike Johnson,mike@example.com,9876543212,ZIRAKPUR,PLOT,,BUY,3000000,5000000,MORE_THAN_SIX_MONTHS,WALK_IN,"Looking for plot to build house","investment,land",CONTACTED
+Sarah Wilson,sarah@example.com,9876543213,PANCHKULA,APARTMENT,ONE,RENT,15000,25000,ZERO_TO_THREE_MONTHS,CALL,"Need 1BHK for rent","student,budget",QUALIFIED
+David Brown,david@example.com,9876543214,CHANDIGARH,OFFICE,,BUY,8000000,12000000,EXPLORING,OTHER,"Looking for office space","business,commercial",NEW
+Lisa Davis,lisa@example.com,9876543215,MOHALI,RETAIL,,BUY,5000000,8000000,THREE_TO_SIX_MONTHS,WEBSITE,"Need retail space for business","commercial,investment",CONTACTED
+Robert Miller,robert@example.com,9876543216,ZIRAKPUR,APARTMENT,FOUR,BUY,7000000,10000000,MORE_THAN_SIX_MONTHS,REFERRAL,"Family looking for 4BHK","family,spacious",VISITED
+Emma Wilson,emma@example.com,9876543217,PANCHKULA,VILLA,TWO,RENT,40000,60000,ZERO_TO_THREE_MONTHS,WALK_IN,"Looking for villa to rent","family,luxury",QUALIFIED
+James Taylor,james@example.com,9876543218,CHANDIGARH,PLOT,,BUY,4000000,7000000,EXPLORING,CALL,"Interested in residential plot","investment,residential",NEW
+Olivia Anderson,olivia@example.com,9876543219,MOHALI,APARTMENT,THREE,BUY,6000000,9000000,THREE_TO_SIX_MONTHS,WEBSITE,"Need 3BHK apartment","family,modern",CONTACTED
