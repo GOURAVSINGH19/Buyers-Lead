@@ -80,6 +80,8 @@ export async function getBuyersPage(params: {
   propertyType?: string;
   status?: string;
   timeline?: string;
+  ownerId?: string;
+
 }): Promise<BuyersPageResult> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) {

@@ -22,10 +22,10 @@ import { Buyer } from '@prisma/client'
 import { cityLabels, propertyTypeLabels, statusLabels, timelineLabels } from '@/lib/validations/buyer'
 
 interface BuyersTableProps {
-  buyers: Buyer[]
+  data: Buyer[]
 }
 
-export function BuyersTable({ buyers }: BuyersTableProps) {
+export function BuyersTable({ data }: BuyersTableProps) {
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {
@@ -60,7 +60,7 @@ export function BuyersTable({ buyers }: BuyersTableProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {buyers?.map((buyer) => (
+        {data?.map((buyer) => (
           <TableRow key={buyer.id}>
             <TableCell className="font-medium">{buyer.fullName}</TableCell>
             <TableCell>{buyer.phone}</TableCell>

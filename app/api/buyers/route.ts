@@ -47,54 +47,22 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  }
-
-  const { searchParams } = new URL(req.url);
-  const page = parseInt(searchParams.get("page") || "1", 10);
-  const limit = 10;
-  const skip = (page - 1) * limit;
-
-  const where: any = {};
-
-  const search = searchParams.get("search");
-  if (search) {
-    where.OR = [
-      { fullName: { contains: search, mode: "insensitive" } },
-      { phone: { contains: search, mode: "insensitive" } },
-      { email: { contains: search, mode: "insensitive" } },
-    ];
-  }
-
-  if (searchParams.get("city")) where.city = searchParams.get("city");
-  if (searchParams.get("propertyType"))
-    where.propertyType = searchParams.get("propertyType");
-  if (searchParams.get("status")) where.status = searchParams.get("status");
-  if (searchParams.get("timeline"))
-    where.timeline = searchParams.get("timeline");
-
-  const [buyers, total] = await Promise.all([
-    prisma.buyer.findMany({
-      where,
-      orderBy: { updatedAt: "desc" },
-      skip,
-      take: limit,
+  try {
+    const res = await prisma.buyer.findMany({
       include: {
-        owner: { select: { name: true, email: true } },
+        owner: {
+          select: { name: true, email: true },
+        },
       },
-    }),
-    prisma.buyer.count({ where }),
-  ]);
-
-  return NextResponse.json({
-    buyers,
-    pagination: {
-      page,
-      limit,
-      total,
-      pages: Math.ceil(total / limit),
-    },
-  });
+      orderBy: { updatedAt: "asc" },
+    });
+    return NextResponse.json({ buyers: res }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 }
+

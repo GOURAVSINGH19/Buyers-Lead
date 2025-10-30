@@ -18,6 +18,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status')
     const timeline = searchParams.get('timeline')
 
+    
     const where: any = {}
 
     if (search) {

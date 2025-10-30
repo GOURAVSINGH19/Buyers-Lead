@@ -8,7 +8,7 @@ import { signOut, useSession } from 'next-auth/react'
 
 export function BuyersHeader() {
   const searchParams = useSearchParams()
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
 
   const handleExport = () => {
     const params = new URLSearchParams()
@@ -33,9 +33,9 @@ export function BuyersHeader() {
       <div>
         <h1 className="text-3xl font-bold">Buyer Leads</h1>
         <p className="text-gray-600">Manage and track your buyer leads</p>
-        {session && (
+        {/* {session && (
           <p className="text-sm text-gray-500">Welcome, {session.user?.name || session.user?.email}</p>
-        )}
+        )} */}
       </div>
       <div className="flex gap-2">
         <Button variant="outline" onClick={handleExport}>

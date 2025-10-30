@@ -4,59 +4,38 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { Search, X } from 'lucide-react'
-import { useState, useEffect, useMemo } from 'react'
 import { cityLabels, propertyTypeLabels, statusLabels, timelineLabels } from '@/lib/validations/buyer'
-import axios from 'axios'
-import debounce from "lodash/debounce"
 
-export function BuyersFilters() {
-  const [search, setSearch] = useState('')
-  const [city, setCity] = useState('all')
-  const [propertyType, setPropertyType] = useState('all')
-  const [status, setStatus] = useState('all')
-  const [timeline, setTimeline] = useState('all')
-
-  const fetchData = async () => {
-    try {
-      await axios.get("/api/buyers", {
-        params: {
-          search: search || undefined,
-          city: city !== 'all' ? city : undefined,
-          propertyType: propertyType !== 'all' ? propertyType : undefined,
-          status: status !== 'all' ? status : undefined,
-          timeline: timeline !== 'all' ? timeline : undefined,
-        },
-      })
-    } catch (error) {
-      console.error("Error fetching buyers:", error)
-    }
-  }
-
-  const debouncedFetch = useMemo(
-    () =>
-      debounce(() => {
-        fetchData();
-      }, 500),
-    []
-  );
-
-  useEffect(() => {
-    debouncedFetch();
-    return () => {
-      debouncedFetch.cancel();
-    };
-  }, [search, city, propertyType, status, timeline]);
+interface FilterOptions {
+  search: string;
+  city: string;
+  propertyType: string;
+  status: string;
+  timeline: string;
+  clearFilters: () => void;
+  hasActiveFilters: boolean | string;
+  onSearchChange: (value: string) => void;
+  onCityChange: (value: string) => void;
+  onPropertyTypeChange: (value: string) => void;
+  onStatusChange: (value: string) => void;
+  onTimelineChange: (value: string) => void;
+}
 
 
-  const clearFilters = () => {
-    setSearch('')
-    setCity('all')
-    setPropertyType('all')
-    setStatus('all')
-    setTimeline('all')
-  }
-
-  const hasActiveFilters = search || (city && city !== 'all') || (propertyType && propertyType !== 'all') || (status && status !== 'all') || (timeline && timeline !== 'all')
+export function BuyersFilters({
+  search,
+  onSearchChange,
+  city,
+  onCityChange,
+  propertyType,
+  onPropertyTypeChange,
+  status,
+  onStatusChange,
+  timeline,
+  onTimelineChange,
+  clearFilters,
+  hasActiveFilters
+}: FilterOptions): React.JSX.Element {
 
   return (
     <div className="bg-white p-4 rounded-lg border mb-6">
@@ -66,12 +45,12 @@ export function BuyersFilters() {
           <Input
             placeholder="Search by name, phone, or email..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10"
           />
         </div>
 
-        <Select value={city} onValueChange={setCity}>
+        <Select value={city} onValueChange={onCityChange}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="City" />
           </SelectTrigger>
@@ -83,7 +62,7 @@ export function BuyersFilters() {
           </SelectContent>
         </Select>
 
-        <Select value={propertyType} onValueChange={setPropertyType}>
+        <Select value={propertyType} onValueChange={onPropertyTypeChange}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Property Type" />
           </SelectTrigger>
@@ -95,7 +74,7 @@ export function BuyersFilters() {
           </SelectContent>
         </Select>
 
-        <Select value={status} onValueChange={setStatus}>
+        <Select value={status} onValueChange={onStatusChange}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
@@ -107,7 +86,7 @@ export function BuyersFilters() {
           </SelectContent>
         </Select>
 
-        <Select value={timeline} onValueChange={setTimeline}>
+        <Select value={timeline} onValueChange={onTimelineChange}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Timeline" />
           </SelectTrigger>

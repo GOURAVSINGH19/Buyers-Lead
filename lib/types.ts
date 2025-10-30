@@ -10,3 +10,6 @@ export interface PaginationInfo {
   total: number
   pages: number
 }
+
+const getFilterValue = (value: string) => (value === "all" ? undefined : value);
+export { getFilterValue as getFilteredvalue };
