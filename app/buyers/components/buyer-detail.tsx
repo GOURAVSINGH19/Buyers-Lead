@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { BuyerForm } from '../../components/buyer-form'
-import { BuyerHistory } from './buyer-history'
+import { BuyerForm } from './buyer-form'
+import { BuyerHistory } from '../components/buyer-history'
 import { Edit, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Buyer } from '@prisma/client'
@@ -69,7 +69,6 @@ export function BuyerDetail({ buyer }: BuyerDetailProps) {
               notes: buyer.notes || '',
               tags: buyer.tags
             }}
-            buyerId={buyer.id}
           />
         </div>
       </div>

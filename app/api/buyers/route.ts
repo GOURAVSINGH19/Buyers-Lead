@@ -51,10 +51,10 @@ export async function GET(req: Request) {
     const res = await prisma.buyer.findMany({
       include: {
         owner: {
-          select: { name: true, email: true },
+          select: { email: true },
         },
       },
-      orderBy: { updatedAt: "asc" },
+      orderBy: { updatedAt: "desc" },
     });
     return NextResponse.json({ buyers: res }, { status: 200 });
   } catch (error) {
@@ -65,4 +65,3 @@ export async function GET(req: Request) {
     );
   }
 }
-

@@ -4,7 +4,39 @@ import { authOptions } from "@/lib/auth";
 import { buyerUpdateSchema } from "@/lib/validations/buyer";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  console.log("api route params",params.id)
+  try {
+    const id = params.id;
+    console.log("api buyer id",id)
+    if (!id) {
+      return NextResponse.json(
+        { message: "Buyer ID is required" },
+        { status: 400 }
+      );
+    }
+    const buyer = await prisma.buyer.findUnique({
+      where: { id },
+    });
+    if (!buyer) {
+      return NextResponse.json({ message: "Buyer not found" }, { status: 404 });
+    }
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

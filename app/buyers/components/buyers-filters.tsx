@@ -7,34 +7,26 @@ import { Search, X } from 'lucide-react'
 import { cityLabels, propertyTypeLabels, statusLabels, timelineLabels } from '@/lib/validations/buyer'
 
 interface FilterOptions {
-  search: string;
-  city: string;
-  propertyType: string;
-  status: string;
-  timeline: string;
-  clearFilters: () => void;
-  hasActiveFilters: boolean | string;
-  onSearchChange: (value: string) => void;
-  onCityChange: (value: string) => void;
-  onPropertyTypeChange: (value: string) => void;
-  onStatusChange: (value: string) => void;
-  onTimelineChange: (value: string) => void;
+  filters: {
+    search: string
+    city: string
+    propertyType: string
+    status: string
+    timeline: string
+  },
+  onSearchChange: (value: string) => void,
+  onFilterChange: (key: string, value: string) => void,
+  clearFilters: () => void,
+  hasActiveFilters: string | boolean,
 }
 
 
 export function BuyersFilters({
-  search,
+  filters,
   onSearchChange,
-  city,
-  onCityChange,
-  propertyType,
-  onPropertyTypeChange,
-  status,
-  onStatusChange,
-  timeline,
-  onTimelineChange,
+  onFilterChange,
   clearFilters,
-  hasActiveFilters
+  hasActiveFilters,
 }: FilterOptions): React.JSX.Element {
 
   return (
@@ -44,13 +36,13 @@ export function BuyersFilters({
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             placeholder="Search by name, phone, or email..."
-            value={search}
+            value={filters.search}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10"
           />
         </div>
 
-        <Select value={city} onValueChange={onCityChange}>
+        <Select value={filters.city} onValueChange={(value) => onFilterChange('city', value)}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="City" />
           </SelectTrigger>
@@ -62,7 +54,7 @@ export function BuyersFilters({
           </SelectContent>
         </Select>
 
-        <Select value={propertyType} onValueChange={onPropertyTypeChange}>
+        <Select value={filters.propertyType} onValueChange={(value) => onFilterChange('propertyType', value)}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Property Type" />
           </SelectTrigger>
@@ -74,7 +66,7 @@ export function BuyersFilters({
           </SelectContent>
         </Select>
 
-        <Select value={status} onValueChange={onStatusChange}>
+        <Select value={filters.status} onValueChange={(value) => onFilterChange('status', value)}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
@@ -86,7 +78,7 @@ export function BuyersFilters({
           </SelectContent>
         </Select>
 
-        <Select value={timeline} onValueChange={onTimelineChange}>
+        <Select value={filters.timeline} onValueChange={(value) => onFilterChange('timeline', value)}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Timeline" />
           </SelectTrigger>

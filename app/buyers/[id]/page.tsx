@@ -1,18 +1,15 @@
 import { notFound } from 'next/navigation'
-import { BuyerDetail } from './components/buyer-detail'
+import { BuyerDetail } from '../components/buyer-detail'
 import axios from 'axios'
 
-interface BuyerPageProps {
-  params: { id: string }
-}
-
-export default async function BuyerPage({ params }: BuyerPageProps) {
+export default async function BuyerPage({ params }:{params:{id:string}}) {
   try {
-    const response = await axios.get(`/api/buyers/${params.id}`)
+    const {id} = await (params)
+    const response = await (axios.get(`/api/buyers/${id}`))
     const buyer = response.data
+    console.log(buyer)
     return <BuyerDetail buyer={buyer} />
   } catch (error) {
-    console.log("error not found",error)
     notFound()
   }
 }
