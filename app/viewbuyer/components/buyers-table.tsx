@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { MoreHorizontal, Eye } from 'lucide-react'
+import { MoreHorizontal, Delete } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -85,9 +85,9 @@ export function BuyersTable({ data }: BuyersTableProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem asChild>
-                    <Link href={`/buyers/${buyer.id}`}>
-                      <Eye className="mr-2 h-4 w-4" />
-                      View
+                    <Link href={`/viewbuyers/${buyer.id}`}>
+                      <Delete className="mr-2 h-4 w-4" />
+                      Delete
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>

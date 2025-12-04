@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import BuyersPage from './buyers/page'
+import BuyersPage from './viewbuyer/page'
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 

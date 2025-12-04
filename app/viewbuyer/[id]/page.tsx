@@ -7,7 +7,6 @@ export default async function BuyerPage({ params }:{params:{id:string}}) {
     const {id} = await (params)
     const response = await (axios.get(`/api/buyers/${id}`))
     const buyer = response.data
-    console.log(buyer)
     return <BuyerDetail buyer={buyer} />
   } catch (error) {
     notFound()
